@@ -30,7 +30,7 @@ $sql2 = 'SELECT LAST_INSERT_ID() as id';  // AUTO INCREMENTした値を取得す
 // SQLを実行
 //-------------------------------------------------
 try{
-  $dbh = new PDO($dsn, $user, $pw);   // 接続
+  $dbh = new PDO(Define::$dsn, Define::$user, Define::$pw);   // 接続
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  // エラーモード
 
   //-------------------------------------------------

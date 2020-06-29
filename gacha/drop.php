@@ -17,6 +17,11 @@ define('MAX_CHARA', 10);
 // ガチゃ1回の価格
 define('GACHA_PRICE', 300);
 
+//-------------------------------------------------
+// 準備
+//-------------------------------------------------
+require_once('../define.php');
+require_once('../send-response.php');
 
 //-------------------------------------------------
 // 引数を受け取る
@@ -29,12 +34,6 @@ if( ($uid === null) || (!is_numeric($uid)) ){
   sendResponse(false, 'Invalid uid');
   exit(1);
 }
-
-//-------------------------------------------------
-// 準備
-//-------------------------------------------------
-require_once('../define.php');
-require_once('../send-response.php');
 
 //---------------------------
 // 実行したいSQL
@@ -56,7 +55,7 @@ $sql4 = 'SELECT * FROM characters WHERE id=:charaid';
 // SQLを実行
 //-------------------------------------------------
 try{
-  $dbh = new PDO($dsn, $user, $pw);   // 接続
+  $dbh = new PDO(Define::$dsn, Define::$user, Define::$pw);   // 接続
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  // エラーモード
 
   // トランザクション開始

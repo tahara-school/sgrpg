@@ -9,6 +9,12 @@
 // ini_set('error_reporting', E_ALL);
 
 //-------------------------------------------------
+// 準備
+//-------------------------------------------------
+require_once('../define.php');
+require_once('../send-response.php');
+
+//-------------------------------------------------
 // 引数を受け取る
 //-------------------------------------------------
 // ユーザーIDを受け取る
@@ -20,12 +26,6 @@ if( ($uid === null) || (!is_numeric($uid)) ){
   exit(1);
 }
 
-//-------------------------------------------------
-// 準備
-//-------------------------------------------------
-require_once('../define.php');
-require_once('../send-response.php');
-
 // 実行したいSQL
 $sql = 'SELECT * FROM users WHERE id=:id';  // Userテーブルの指定列を取得
 
@@ -34,7 +34,7 @@ $sql = 'SELECT * FROM users WHERE id=:id';  // Userテーブルの指定列を�
 // SQLを実行
 //-------------------------------------------------
 try{
-  $dbh = new PDO($dsn, $user, $pw);   // 接続
+  $dbh = new PDO(Define::$dsn, Define::$user, Define::$pw);   // 接続
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  // エラーモード
   $sth = $dbh->prepare($sql);         // SQL準備
 
