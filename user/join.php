@@ -19,6 +19,7 @@ define('DEFAULT_MONEY', 3000);
 // 準備
 //-------------------------------------------------
 require_once('../define.php');
+require_once('../send-response.php');
 
 // 実行したいSQL
 $sql1 = 'INSERT INTO users(lv, exp, money) VALUES(:lv, :exp, :money)';
@@ -71,19 +72,4 @@ if( $buff === false ){
 // データを正常に取得
 else{
   sendResponse(true, $buff['id']);
-}
-
-/**
- * 実行結果をJSON形式で返却する
- *
- * @param boolean $status
- * @param array   $value
- * @return void
- */
-function sendResponse($status, $value=[]){
-  header('Content-type: application/json');
-  echo json_encode([
-    'status' => $status,
-    'result' => $value
-  ]);
 }
