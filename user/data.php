@@ -13,6 +13,7 @@
 //-------------------------------------------------
 require_once('../define.php');
 require_once('../send-response.php');
+require_once('../initialize-database.php');
 
 //-------------------------------------------------
 // 引数を受け取る
@@ -34,8 +35,7 @@ $sql = 'SELECT * FROM users WHERE id=:id';  // Userテーブルの指定列を�
 // SQLを実行
 //-------------------------------------------------
 try{
-  $dbh = new PDO(Define::$dsn, Define::$user, Define::$pw);   // 接続
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  // エラーモード
+  $dbh = initializeDatabase();
   $sth = $dbh->prepare($sql);         // SQL準備
 
   // プレースホルダに値を入れる

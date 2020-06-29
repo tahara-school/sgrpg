@@ -20,6 +20,7 @@ define('DEFAULT_MONEY', 3000);
 //-------------------------------------------------
 require_once('../define.php');
 require_once('../send-response.php');
+require_once('../initialize-database.php');
 
 // 実行したいSQL
 $sql1 = 'INSERT INTO users(lv, exp, money) VALUES(:lv, :exp, :money)';
@@ -30,8 +31,7 @@ $sql2 = 'SELECT LAST_INSERT_ID() as id';  // AUTO INCREMENTした値を取得す
 // SQLを実行
 //-------------------------------------------------
 try{
-  $dbh = new PDO(Define::$dsn, Define::$user, Define::$pw);   // 接続
-  $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  // エラーモード
+  $dbh = initializeDatabase();
 
   //-------------------------------------------------
   // 新規にレコードを作成
