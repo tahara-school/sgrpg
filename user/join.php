@@ -18,9 +18,7 @@ define('DEFAULT_MONEY', 3000);
 //-------------------------------------------------
 // 準備
 //-------------------------------------------------
-$dsn  = 'mysql:dbname=sgrpg;host=127.0.0.1';  // 接続先を定義
-$user = 'senpai';      // MySQLのユーザーID
-$pw   = 'indocurry';   // MySQLのパスワード
+require_once('../define.php');
 
 // 実行したいSQL
 $sql1 = 'INSERT INTO users(lv, exp, money) VALUES(:lv, :exp, :money)';
