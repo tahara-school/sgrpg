@@ -43,7 +43,7 @@ if( ($uid === null) || (!is_numeric($uid)) ){
 $sql1 = 'SELECT money FROM users WHERE id=:userid';
 
 // Userテーブルの所持金を減産
-$sql2 = 'UPDATE users SET money=money-:price';
+$sql2 = 'UPDATE users SET money=money-:price WHERE id=:userid';
 
 // UserCharaテーブルにキャラクターを追加
 $sql3 = 'INSERT INTO user_characters(user_id, chara_id) VALUES(:userid,:charaid)';
@@ -86,6 +86,7 @@ try{
   //---------------------------
   $sth = $dbh->prepare($sql2);
   $sth->bindValue(':price', GACHA_PRICE, PDO::PARAM_INT);
+  $sth->bindValue(':userid', $uid, PDO::PARAM_INT);
   $sth->execute();
 
   //---------------------------
